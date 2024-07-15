@@ -47,6 +47,15 @@ class PostViewSet(viewsets.ModelViewSet):
         like_post.save(update_fields = ['like_num'])
         return Response()
     
+    @action(methods=['GET'],detail = True)
+    def like_cancle(self,request, pk=None):
+        like_post = self.get_object()
+        if(like_post.like_num > 0):
+            like_post.like_num -=1
+        like_post.save(update_fields = ['like_num'])
+        return Response()
+    
+    
     
         
 
